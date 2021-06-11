@@ -1,0 +1,55 @@
+loadModel(Modelica);
+getErrorString();
+
+loadFile("../MLibrary/package.mo");
+getErrorString();
+
+loadFile("connectors.mo");
+getErrorString();
+
+loadFile("prodigit.mo");
+getErrorString();
+
+loadFile("mc.mo");
+getErrorString();
+
+loadFile("types.mo");
+getErrorString();
+
+loadFile("aula.mo");
+getErrorString();
+
+loadFile("gomp.mo");
+getErrorString();
+
+loadFile("studente.mo");
+getErrorString();
+
+loadFile("system.mo");
+getErrorString();
+
+loadFile("monitorf1.mo");
+getErrorString();
+
+loadFile("monitorf2.mo");
+getErrorString();
+
+loadFile("monitornf1.mo");
+getErrorString();
+
+loadFile("monitornf2.mo");
+getErrorString();
+
+simulate(System, stopTime=400);
+getErrorString();
+
+plot({mf1.z, mf2.z, mnf1.y, mnf2.z, p.tempoOffline},externalWindow=true);
+getErrorString();
+
+//plot({g.stato, a.stato, s.stato}, externalWindow=true);
+//getErrorString();
+
+//plot({p.s, p.a, p.f},externalWindow=true);
+//getErrorString();
+
+

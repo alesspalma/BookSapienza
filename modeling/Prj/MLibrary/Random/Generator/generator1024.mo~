@@ -1,0 +1,67 @@
+
+model generator1024
+      "Generate random numbers with the various random number generators"
+
+      parameter Real samplePeriod = 1.0
+        "Sample period for the generation of random numbers";
+      parameter Integer globalSeed = 30020
+        "Global seed to initialize random number generator";
+
+    // Random number generators with exposed state
+      parameter Integer localSeed = 614657
+        "Local seed to initialize random number generator";
+       output Real r1024 "Random number generated with Xorshift1024star";
+
+protected
+      discrete Integer state1024[Modelica.Math.Random.Generators.Xorshift1024star.nState];
+
+algorithm
+      when initial() then
+        // Generate initial state from localSeed and globalSeed
+
+        state1024 := Modelica.Math.Random.Generators.Xorshift1024star.initialState(localSeed, globalSeed);
+        r1024     := 0;
+	
+      elsewhen sample(0,samplePeriod) then
+       (r1024,state1024) := Modelica.Math.Random.Generators.Xorshift1024star.random(pre(state1024));
+      end when;
+
+
+end generator1024;
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+parameter Integer localSeed = 1;
+parameter Integer globalSeed = 23;
+
+Integer state[Xorshift1024star.nState];
+Real r;
+
+initial equation
+  state = initialState(localSeed, globalSeed);
+
+
+equation
+
+when sample(0, 1) then
+
+ (r, state) = random(pre(state));
+
+end when;
+
+
+
+end System;
+
+*/
